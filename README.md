@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# File picker react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tired of using file pickers that are not enough customizable or have convoluted change handlers? Look no further! This file picker is built with styled-components for all your styling needs and the change handler will return the files you are looking for instead of some weird custom result!
 
-## Available Scripts
+## How to install
 
-In the project directory, you can run:
+You can install the package via npm:
 
-### `npm start`
+```npm i @sheikonh/file-picker```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[![npm](https://img.shields.io/badge/npm-1.0.0-orange?style=flat&logo=npm)](https://www.npmjs.com/package/@sheikonh/file-picker)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+#### Customisation
+The entire file picker is built with customisation in mind. All components use styled-components and React CSSProperties. To propagate styles to the components, React Context is used, so you can simply pass your custom styles as a CSSProperties object to the prop you want to style and voila!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+const wrapperStyles: React.CSSProperties = {
+  backgroundColor: 'purple'
+};
 
-### `npm run build`
+<FilePicker wrapperStyles={{...wrapperStyles}} />
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Ease of use
+To get the files your users have selected or dropped, just attach a function to the onChange prop and you will have your files ready as a parameter, no need to transform the event result!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+const onChange = (files: FileList) => {
+  console.log('My files are here!', files);
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<FilePicker onChange={onChange} />
+```
 
-### `npm run eject`
+#### Drag & drop friendly
+The file picker is by default drag & drop friendly. No need to attach or configure drag & drop events!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Also, the onChange prop works for both click and select and drag & drop 😉
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Image preview
+If you want to use the file picker to show a selected image, fear not, we got you covered! Using the 'renderPreview' prop will let you show your users the beautiful picture they selected or dropped before they decide what they want to do with it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+<FilePicker renderPreview={true} />
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Changelog
 
-## Learn More
+- 1.0.0: First version! 🥳
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Roadmap
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Improve documentation (API reference, readme, etc...)
+- Add demo
+- Improve custom styling
+- Improve code
+- Add tests
+- Add more customisation
+- Improve look & feel
